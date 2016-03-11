@@ -34,6 +34,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
@@ -587,6 +588,8 @@ public class JsonArrayTest {
     JsonArray arr = new JsonArray().add("quux");
     jsonArray.add((Object)obj);
     jsonArray.add((Object)arr);
+    UUID uuid = UUID.randomUUID();
+    jsonArray.add((Object)uuid);
     assertEquals("bar", jsonArray.getString(0));
     assertEquals(Integer.valueOf(123), jsonArray.getInteger(1));
     assertEquals(Long.valueOf(123l), jsonArray.getLong(2));
@@ -597,6 +600,7 @@ public class JsonArrayTest {
     assertEquals(now, jsonArray.getInstant(7));
     assertEquals(obj, jsonArray.getJsonObject(8));
     assertEquals(arr, jsonArray.getJsonArray(9));
+    assertEquals(uuid, jsonArray.getValue(10));
     try {
       jsonArray.add(new SomeClass());
       fail();

@@ -1093,6 +1093,8 @@ public class JsonObjectTest {
     JsonArray arr = new JsonArray().add("quux");
     jsonObject.put("obj", (Object)obj);
     jsonObject.put("arr", (Object)arr);
+    UUID uuid = UUID.randomUUID();
+    jsonObject.put("uuid", uuid);
     assertEquals("bar", jsonObject.getString("str"));
     assertEquals(Integer.valueOf(123), jsonObject.getInteger("int"));
     assertEquals(Long.valueOf(123l), jsonObject.getLong("long"));
@@ -1102,6 +1104,7 @@ public class JsonObjectTest {
     assertEquals(now, jsonObject.getInstant("instant"));
     assertEquals(obj, jsonObject.getJsonObject("obj"));
     assertEquals(arr, jsonObject.getJsonArray("arr"));
+    assertEquals(uuid, (UUID)jsonObject.getValue("uuid"));
     try {
       jsonObject.put("inv", new SomeClass());
       fail();

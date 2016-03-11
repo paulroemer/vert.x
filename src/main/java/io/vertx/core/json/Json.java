@@ -30,6 +30,7 @@ import java.util.Base64;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -94,6 +95,8 @@ public class Json {
       // OK
     } else if (val instanceof CharSequence) {
       val = val.toString();
+    } else if (val instanceof UUID) {
+      // OK
     } else if (val instanceof JsonObject) {
       if (copy) {
         val = ((JsonObject) val).copy();
